@@ -36,15 +36,15 @@ tasks:
   - task: libero_goal_bowl_on_cabinet
     config: capx/geniac_prize/libero/libero_goal_bowl_on_cabinet.yaml
     layouts: 50
-    seeds: ["301-340", "351-390"]
+    seeds: ["301-320", "381-390"]
   - task: libero_goal_bowl_on_plate
     config: capx/geniac_prize/libero/libero_goal_bowl_on_plate.yaml
     layouts: 50
-    seeds: ["301-340", "351-390"]
-  # - task: libero_goal_bowl_on_stove
-  #   config: capx/geniac_prize/libero/libero_goal_bowl_on_stove.yaml
-  #   layouts: 50
-  #   seeds: ["301-340", "351-390"]
+    seeds: ["301-320", "381-390"]
+  - task: libero_goal_bowl_on_stove
+    config: capx/geniac_prize/libero/libero_goal_bowl_on_stove.yaml
+    layouts: 50
+    seeds: ["301-320", "381-390"]
   # - task: libero_goal_cream_cheese_bowl
   #   config: capx/geniac_prize/libero/libero_goal_cream_cheese_bowl.yaml
   #   layouts: 50
