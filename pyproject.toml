@@ -14,7 +14,7 @@ train = ["torch>=2.9", "torchvision>=0.24", "pillow>=10", "transformers>=4.57", 
 # `convert tag` only needs a tokenizer.
 tag = ["transformers>=4.57"]
 # Optional experiment tracking. Off by default; the trainer never needs it.
-wandb = ["wandb"]
+wandb = ["wandb", "psutil>=5.9"]
 # Optional: resolve a data location given as hf://<repo_id>[@<revision>][/<subdir>].
 hub = ["huggingface_hub"]
 dev = ["pytest>=8", "ruff>=0.6"]
