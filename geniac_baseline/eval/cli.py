@@ -34,4 +34,5 @@ def add_parser(sub: argparse._SubParsersAction) -> None:
     sc = s.add_parser("score", help="success rate and multi-turn behaviour per task")
     sc.add_argument("runs", type=Path, nargs="+", help="run directories (all trials are pooled; duplicate seeds error)")
     sc.add_argument("--json", type=Path)
+    sc.add_argument("--output-dir", type=Path, required=False, help="override output directory")
     sc.set_defaults(func=_score)

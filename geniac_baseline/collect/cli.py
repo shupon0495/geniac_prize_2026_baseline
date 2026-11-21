@@ -13,6 +13,8 @@ def plan_cmd(expected_mode: str):
         spec = load_spec(a.spec)
         if spec.mode != expected_mode:
             raise SystemExit(f"{a.spec}: mode is {spec.mode!r}, expected {expected_mode!r}")
+        if a.output_dir is not None:
+            spec.output_dir = a.output_dir.expanduser().resolve()
         script = write_plan(spec)
         print(f"[plan] wrote {script}")
         if spec.mode == "collect":
@@ -28,4 +30,6 @@ def add_parser(sub: argparse._SubParsersAction) -> None:
     s = p.add_subparsers(dest="collect_cmd", required=True)
     pl = s.add_parser("plan", help="preflight + write run.sh, per-segment configs and sources.yaml")
     pl.add_argument("--spec", type=Path, required=True, help="run spec YAML (configs/collect.yaml)")
+    pl.add_argument("--output-dir", type=Path, required=False, help="override output directory")
     pl.set_defaults(func=plan_cmd("collect"))
+
