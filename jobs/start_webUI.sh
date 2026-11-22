@@ -100,7 +100,7 @@ srun --overlap --nodes=1 --ntasks=1 --cpus-per-task=1 \
         set -e
         cd "$CAPX_PROJECT_DIR"
         export PATH="$HOME/.local/bin:$PATH"
-        exec uv run python -m capx.web.server --host 127.0.0.1 --port "$BACK_PORT"
+        exec uv run python -u -m capx.web.server --host 127.0.0.1 --port "$BACK_PORT"
     ' > "$JOB_LOG_DIR/backend.log" 2>&1 &
 BACK_SRUN_PID=$!
 
