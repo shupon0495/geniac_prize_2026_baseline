@@ -4,7 +4,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=256G
-#SBATCH --time=<時間>
+#SBATCH --time=01:00:00
 #SBATCH --output=/home/user_00003_6d02c8/shared-storage/members/Shun/logs/%x-%j.out
 set -euo pipefail
 cd /home/user_00003_6d02c8/shared-storage/members/Shun/geniac_prize_2026_baseline
