@@ -57,6 +57,7 @@ if [[ "${1:-}" != "--worker" ]]; then
         --nodes=1
         --ntasks=1
         --cpus-per-task="${CPUS:-4}"
+        --gpus="${GPUS:-1}"
         --mem="${MEM:-8G}"
         --time="${TIME_LIMIT:-02:00:00}"
         --chdir="$PROJECT_DIR"
