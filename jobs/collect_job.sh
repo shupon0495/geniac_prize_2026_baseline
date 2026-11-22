@@ -18,4 +18,4 @@ RUN_DIR="runs/collect/libero_${SLURM_JOB_ID}"
     --spec configs/my_collect_libero.yaml \
     --output-dir "$RUN_DIR"
 
-bash "$RUN_DIR/run.sh"
+bash jobs/with_wandb.sh bash "$RUN_DIR/run.sh"
