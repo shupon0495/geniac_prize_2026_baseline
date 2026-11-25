@@ -12,10 +12,18 @@ hostname
 nvidia-smi --query-gpu=name,memory.total --format=csv
 export VLLM_USE_FLASHINFER_SAMPLER=0
 
-RUN_DIR="runs/collect/libero_${SLURM_JOB_ID}"
+# 読むファイルを確認
+SPEC="${1:?Usage: sbatch jobs/collect_job.sh <spec.yaml>}"
+if [[ ! -f "$SPEC" ]]; then
+    echo "設定ファイルが見つかりません: $SPEC" >&2
+    exit 1
+fi
+
+COLLECT_NAME="$(basename "$SPEC" .yaml)"
+RUN_DIR="runs/collect/${COLLECT_NAME}-${SLURM_JOB_ID}"
 
 .venv/bin/geniac-baseline collect plan \
-    --spec configs/my_collect_libero.yaml \
+    --spec "$SPEC" \
     --output-dir "$RUN_DIR"
 
 bash jobs/with_wandb.sh bash "$RUN_DIR/run.sh"
