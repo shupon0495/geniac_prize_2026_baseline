@@ -17,7 +17,7 @@ if [[ ! -f "$SRC" ]]; then
 fi
 
 COLLECT_NAME="$(basename -- "$COLLECT_DIR")"
-OUT_DIR="runs/convert/${COLLECT_NAME}-convert-${SLURM_JOB_ID}"
+OUT_DIR="runs/convert/${COLLECT_NAME}_convert-${SLURM_JOB_ID}"
 mkdir -p runs/convert
 mkdir -- "$OUT_DIR"
 printf '%s\n' "$COLLECT_DIR" > "$OUT_DIR/collect_source.txt"
