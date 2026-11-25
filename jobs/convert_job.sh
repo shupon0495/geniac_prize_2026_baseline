@@ -8,7 +8,16 @@
 set -euxo pipefail
 cd /home/user_00003_6d02c8/shared-storage/members/Shun/geniac_prize_2026_baseline
 GB=.venv/bin/geniac-baseline
-COLLECT_DIR="${1:?Usage: sbatch jobs/convert_job.sh <collect_dir>}"
+COLLECT_DIR="${1:?Usage: sbatch jobs/convert_job.sh <collect_dir> [--out <dir>]}"
+shift
+OUTPUT_OVERRIDE=""
+if (( $# > 0 )); then
+    if [[ $# -ne 2 || "$1" != "--out" || -z "$2" ]]; then
+        echo "Usage: sbatch jobs/convert_job.sh <collect_dir> [--out <dir>]" >&2
+        exit 2
+    fi
+    OUTPUT_OVERRIDE="$2"
+fi
 COLLECT_DIR="$(realpath -- "$COLLECT_DIR")"
 SRC="$COLLECT_DIR/sources.yaml"
 if [[ ! -f "$SRC" ]]; then
@@ -17,8 +26,12 @@ if [[ ! -f "$SRC" ]]; then
 fi
 
 COLLECT_NAME="$(basename -- "$COLLECT_DIR")"
-OUT_DIR="runs/convert/${COLLECT_NAME}_convert-${SLURM_JOB_ID}"
-mkdir -p runs/convert
+if [[ -n "$OUTPUT_OVERRIDE" ]]; then
+    OUT_DIR="$OUTPUT_OVERRIDE"
+else
+    OUT_DIR="runs/convert/${COLLECT_NAME}_convert-${SLURM_JOB_ID}"
+fi
+mkdir -p -- "$(dirname -- "$OUT_DIR")"
 mkdir -- "$OUT_DIR"
 printf '%s\n' "$COLLECT_DIR" > "$OUT_DIR/collect_source.txt"
 
