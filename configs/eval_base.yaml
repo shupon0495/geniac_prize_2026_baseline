@@ -14,15 +14,15 @@ serve_python: .venv-serve/bin/python    # an environment with vLLM
 pythonpath: null                        # extra PYTHONPATH for the launch (ASPIRE: its root)
 
 model: Qwen/Qwen3.8-27B   # served model name; weights: Qwen/Qwen3.8-27B revision 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0
-model_path: null          # local weights directory; null = let vLLM resolve the model id
+model_path: /home/user_00003_6d02c8/shared-storage/members/Shun/models/Qwen3.8-27B          # local weights directory; null = let vLLM resolve the model id
 molmo: true               # Molmo2-8B pointing server (nut_assembly's API uses it)
-molmo_path: null
+molmo_path: /home/user_00003_6d02c8/shared-storage/members/Shun/models/Molmo2-8B
 chat_template: ../runs/qwen38_low_reasoning.jinja   # geniac-baseline template --model-dir <snapshot> --out <this path>
 
 output_dir: ../runs/eval_base
 port_offset: 0            # perception servers (*_SERVICE_URL); 0 = CaP-X default ports
 vllm_port_offset: 0
-b300_workarounds: false   # true on B300: attention-kernel flags + TORCH_CUDA_ARCH_LIST=10.0
+b300_workarounds: true   # true on B300: attention-kernel flags + TORCH_CUDA_ARCH_LIST=10.0
 num_workers: null         # null = the config's num_workers (8)
 trial_timeout_s: 2400     # per trial wall clock (ASPIRE default the baseline ran with)
 # GPU: one GPU holds every server; shares below are the baseline's on a 275 GB B300 (docs/collect.md)
@@ -38,21 +38,21 @@ tasks:
   - task: cube_lifting
     config: capx/geniac_prize/robosuite/cube_lifting.yaml
     seeds: ["401-450"]
-  - task: cube_restack
-    config: capx/geniac_prize/robosuite/cube_restack.yaml
-    seeds: ["401-450"]
-  - task: cube_stack
-    config: capx/geniac_prize/robosuite/cube_stack.yaml
-    seeds: ["401-450"]
-  - task: nut_assembly
-    config: capx/geniac_prize/robosuite/nut_assembly.yaml
-    seeds: ["401-450"]
-  - task: spill_wipe
-    config: capx/geniac_prize/robosuite/spill_wipe.yaml
-    seeds: ["401-450"]
-  - task: two_arm_handover
-    config: capx/geniac_prize/robosuite/two_arm_handover.yaml
-    seeds: ["401-450"]
-  - task: two_arm_lift
-    config: capx/geniac_prize/robosuite/two_arm_lift.yaml
-    seeds: ["401-450"]
+  # - task: cube_restack
+  #   config: capx/geniac_prize/robosuite/cube_restack.yaml
+  #   seeds: ["401-450"]
+  # - task: cube_stack
+  #   config: capx/geniac_prize/robosuite/cube_stack.yaml
+  #   seeds: ["401-450"]
+  # - task: nut_assembly
+  #   config: capx/geniac_prize/robosuite/nut_assembly.yaml
+  #   seeds: ["401-450"]
+  # - task: spill_wipe
+  #   config: capx/geniac_prize/robosuite/spill_wipe.yaml
+  #   seeds: ["401-450"]
+  # - task: two_arm_handover
+  #   config: capx/geniac_prize/robosuite/two_arm_handover.yaml
+  #   seeds: ["401-450"]
+  # - task: two_arm_lift
+  #   config: capx/geniac_prize/robosuite/two_arm_lift.yaml
+  #   seeds: ["401-450"]
