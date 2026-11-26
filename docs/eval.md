@@ -1,5 +1,7 @@
 # Evaluation
 
+保存済みLIBERO評価を動画・コード・応答・ログと照合する場合は [評価結果ビューワー](../eval_viewer.md) を使う。
+
 1. run spec を選ぶ。学習前は `configs/eval_base.yaml`(Robosuite)と `configs/eval_base_libero.yaml`(LIBERO-PRO)、
    学習後は `configs/eval_trained.yaml` と `configs/eval_trained_libero.yaml`。学習後の spec には adapter
    (既定は DMPO の最後の adapter)と `lora_name` を書き、タスクと seed は学習前と揃える。

@@ -1,0 +1,19 @@
+<section aria-label="ブラウザ内メモ">
+  <h3>手元PCの調査メモ</h3>
+  <p>このブラウザ内に自動保存します。ポート・URL・ブラウザが変わる場合はJSONで移行してください。</p>
+  <p data-note-identity>試行を選択してください</p>
+  <fieldset data-note-fields disabled>
+    <legend>分類タグ</legend>
+    <label><input type="checkbox" value="認識ミス"> 認識ミス</label>
+    <label><input type="checkbox" value="把持失敗"> 把持失敗</label>
+    <label><input type="checkbox" value="コード例外"> コード例外</label>
+    <label><input type="checkbox" value="早すぎるFINISH"> 早すぎるFINISH</label>
+    <label><input type="checkbox" value="その他"> その他</label>
+    <label style="display:block">自由記述
+      <textarea data-note-text rows="5" style="width:100%;border:1px solid #888;padding:8px"></textarea>
+    </label>
+  </fieldset>
+  <p data-note-status role="status"></p>
+  <button type="button" data-note-export>メモJSONを書き出す</button>
+  <label>メモJSONを読み込む <input data-note-import type="file" accept="application/json,.json"></label>
+</section>

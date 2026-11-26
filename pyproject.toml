@@ -18,9 +18,12 @@ wandb = ["wandb"]
 # Optional: resolve a data location given as hf://<repo_id>[@<revision>][/<subdir>].
 hub = ["huggingface_hub"]
 dev = ["pytest>=8", "ruff>=0.6"]
+# Saved-result viewer, isolated from the simulator and training environment.
+viewer = ["gradio==6.9.0"]
 
 [project.scripts]
 geniac-baseline = "geniac_baseline.cli:main"
+geniac-eval-viewer = "geniac_baseline.viewer.__main__:main"
 
 [build-system]
 requires = ["hatchling"]
